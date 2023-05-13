@@ -20,7 +20,7 @@ let weather = {
         const { temp_c, humidity } = data.current;
         const { wind_kph } = data.current;
         const { last_updated } = data.current
-        console.log(name, country, icon, text, temp_c, humidity, wind_kph, last_updated)
+        // console.log(name, country, icon, text, temp_c, humidity, wind_kph, last_updated)
 
         document.getElementById("city").innerText = "Weather in " + name +", " + country;
         document.getElementById("icon").src = icon 
@@ -30,12 +30,15 @@ let weather = {
         document.getElementById("wind").innerText ="Wind Speed: "+ wind_kph +"kph";
         document.getElementById("time").innerText = "Last Updated : " + last_updated
 
+        document.querySelector(".weather").classList.remove("loading");
     },
     search: function(){
         this.fetchWeather(document.getElementById("search-bar").value)
     }
 
 };
+
+
 
 document.getElementById("search-bar1").addEventListener("click", function(){
     weather.search();
@@ -45,3 +48,5 @@ document.getElementById("search-bar").addEventListener("keyup", function(event){
         weather.search();
     }
 })
+
+weather.fetchWeather("pune")
